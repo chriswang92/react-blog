@@ -1,11 +1,11 @@
 
 import React from 'react';
-import Login from './LoginForm';
+import LoginFormCtn from '../containers/LoginFormCtn';
 
 class MainLayout extends React.Component {
   render() {
     return(
-      <Login />
+      <LoginFormCtn />
     );
   }
 }

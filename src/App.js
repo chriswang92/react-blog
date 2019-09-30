@@ -1,12 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import MainLayout from './components/MainLayout';
+import { Provider } from 'react-redux';
+import MainLayout from './login-form/components/MainLayout';
+import configureStore from './login-form/store';
+import Immutable from 'immutable';
+import {USER_STATE} from './config/constants';
 
-function App() {
-  return (
-    <MainLayout/>
-  );
+const initialState = Immutable.fromJS({
+  [USER_STATE]: {
+    users:{}
+  }
+})
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.store = configureStore(undefined, initialState);
+  }
+
+  componentDidMount() {
+    // this.context.registerStore(this.store);
+  }
+
+  componentWillUnmount() {
+    // unregister store
+  }
+  render() {
+    return (
+      <div>
+        <Provider store={this.store}>
+          <MainLayout/>
+        </Provider>
+      </div> 
+    );
+  }
 }
-
 export default App;

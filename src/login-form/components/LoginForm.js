@@ -11,6 +11,7 @@ class LoginForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        this.props.registerUser(values);
       }
     });
   };
@@ -19,9 +20,12 @@ class LoginForm extends React.Component {
     if (!val) {
       callback();
     }
-    let validateResult = null;
+    console.log('username = ',val);
+    console.log('username = ',val.length);
+    let validateResult = val.length > 8 && val.length < 10;
+    // console.log('username = ',validateResult);
     if (!validateResult) {
-      callback('Please input validate username');
+      callback('Please input validate username, length must be >8 and <10, current length='+val.length);
     }
     callback();
   }
@@ -33,9 +37,11 @@ class LoginForm extends React.Component {
       <Form className="login-form" onSubmit={this.handleSubmit}>
         <FormItem>
           {getFieldDecorator('username', {
+            // initialValue: {username:'', password:''},
             rules: [
-              {required: true, message: 'Please input your username!'},
-              {min: 8, message: 'username needs to be at least 8 chars!'}
+              // {required: true, message: 'Please input your username!'},
+              // {min: 8, message: 'username needs to be at least 8 chars!'}
+              { validator: this.handleValidator }
             ],
           })(
             <Input 
