@@ -7,7 +7,8 @@ import LoginForm from '../components/LoginForm';
 
 
 const mapStateToProps = null;
-const mapDispatchToProps = dispatch => bindActionCreators({
+const mapDispatchToProps = dispatch => 
+bindActionCreators({
   registerUser
 },
 dispatch);

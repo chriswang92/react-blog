@@ -1,4 +1,7 @@
+import {combineReducers} from 'redux';
+import userActionReducer from './userActionReducers';
 
 
-
-export default function rootRecuer();
+export default combineReducers({
+    userActionReducer
+})

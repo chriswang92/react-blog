@@ -26,11 +26,9 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
         <Provider store={this.store}>
           <MainLayout/>
         </Provider>
-      </div> 
     );
   }
 }

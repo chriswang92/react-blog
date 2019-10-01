@@ -4,7 +4,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from '../reducers';
 import rootSaga from '../sagas';
 
-const configureStore = (history, preloadedState) => {
+const configureStore = (
+  history, preloadedState
+  ) => {
   // const sagaMiddleware = createSagaMiddleware();
   let store = null;
   // if(process.env.NODE_ENV === 'production') {
@@ -17,7 +19,9 @@ const configureStore = (history, preloadedState) => {
   //   );  
   // }
   // sagaMiddleware.run(rootSaga);
-  createStore(rootReducer, preloadedState);
+  store = createStore(rootReducer 
+    ,preloadedState
+    );
   return store;
 };
 
