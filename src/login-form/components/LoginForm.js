@@ -1,6 +1,8 @@
 import React from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import 'antd/dist/antd.css';
+import {Redirect} from 'react-router-dom';
+import ContentCtn from '../containers/ContentCtn';
 
 const Password = Input.Password;
 const FormItem = Form.Item;
@@ -34,6 +36,7 @@ class LoginForm extends React.Component {
     const {getFieldDecorator} = this.props.form;
 
     return (
+      <div>
       <Form className="login-form" onSubmit={this.handleSubmit}>
         <FormItem>
           {getFieldDecorator('username', {
@@ -75,11 +78,16 @@ class LoginForm extends React.Component {
           )}
           <a className="login-form-forgot" href="">Forgot password</a>
           <Button type="primary" htmlType="submit" className="login-form-button">
-            Log in
+            Register
           </Button>
-          Or <a href="">register now!</a>
+          Or <a href="">Login now!</a>
+        </FormItem>
+        <FormItem>
+          <Button onClick={()=>this.props.history.push('/home')}>back to Home </Button>
         </FormItem>
       </Form>
+        <ContentCtn />
+        </div>
     );
   }
 }

@@ -1,35 +1,14 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import MainLayout from './login-form/components/MainLayout';
-import configureStore from './login-form/store';
-import Immutable from 'immutable';
-import {USER_STATE} from './config/constants';
-
-const initialState = Immutable.fromJS({
-  [USER_STATE]: {
-    users:{}
-  }
-})
+import Shell from './shell';
+import LoginPage from './login-form/containers/LoginFormCtn';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.store = configureStore(undefined, initialState);
-  }
-
-  componentDidMount() {
-    // this.context.registerStore(this.store);
-  }
-
-  componentWillUnmount() {
-    // unregister store
-  }
   render() {
-    return (
-        <Provider store={this.store}>
-          <MainLayout/>
-        </Provider>
-    );
+    const {session} = this.props;
+    if (session) {
+      return <Shell />;
+    }
+    return <LoginPage />;
   }
 }
 export default App;
