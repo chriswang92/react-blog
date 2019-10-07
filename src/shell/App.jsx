@@ -5,7 +5,7 @@ import {USER_STATE} from '../config/constants';
 import RootRouter from './RootRouter';
 
 const initialState = Immutable.Map({
-  user: {id:0, name: 'chris', username: 'chriswang', password: 'abc123'}
+  users: [{id:0, username: 'chriswang', password: 'abc123'}]
 });
 
 

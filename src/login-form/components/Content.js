@@ -10,11 +10,12 @@ class Content extends React.Component {
   render() {
     // const {getFieldDecorator} = this.props.form;
     let key = 1;
+    console.log('rendering Content, users=',this.props);
     return (
       <div>
         <h1>Content, total users#:
         </h1>
-        {this.props.users.map(u=><div key={++key}>id: {key}, username: {u.username}</div>)}
+        {/* {this.props.users.map(u=><div key={++key}>id: {key}, username: {u.username}</div>)} */}
       </div>
     );
   }

@@ -7,11 +7,12 @@ import Content from '../components/Content';
 import {userSelector} from '../selectors/userSelector';
 
 const mapStateToProps = (state, props) => ({
-  users: userSelector(state, props)
+  users: userSelector(state)
 });
-const mapDispatchToProps = dispatch => 
-bindActionCreators({
-},
-dispatch);
+const mapDispatchToProps = null;
+// dispatch => 
+// bindActionCreators({
+// },
+// dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
