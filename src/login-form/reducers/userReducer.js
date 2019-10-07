@@ -2,7 +2,7 @@ import {REGISTER_USER} from '../actions/apis';
 import {USER_STATE} from '../../config/constants';
 import Immutable from 'immutable';
 
-export default function userActionReducers(rootState=Immutable.Map({}), action) {
+export default function userReducer(rootState=Immutable.Map({}), action) {
     const state = rootState.get(USER_STATE);
     switch(action.type) {
         case REGISTER_USER:

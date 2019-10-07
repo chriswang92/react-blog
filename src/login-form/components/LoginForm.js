@@ -77,15 +77,14 @@ class LoginForm extends React.Component {
             </Checkbox>
           )}
           <a className="login-form-forgot" href="">Forgot password</a>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button type="primary" htmlType="submit" className="login-form-button" >
             Register
           </Button>
           Or <a href="">Login now!</a>
         </FormItem>
-        <FormItem>
-          <Button onClick={()=>this.props.history.push('/home')}>back to Home </Button>
-        </FormItem>
       </Form>
+      <hr />
+        <Button onClick={()=>this.props.history.push('/home')}>back to Home </Button>
         <ContentCtn />
         </div>
     );

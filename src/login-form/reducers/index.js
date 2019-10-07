@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
-import userActionReducers from './userActionReducers';
-
+import userReducer from './userReducer';
+import {USER_STATE} from '../../config/constants';
 
 export default combineReducers({
-    userActionReducers
+    [USER_STATE]: userReducer
 });

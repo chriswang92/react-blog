@@ -26,6 +26,7 @@ class App extends React.Component {
   }
   render() {
     // return <p>RootRouter</p>; 
+    console.log('rendering App with store=',this.store);
     return <RootRouter store={this.store} />;
   }
 }

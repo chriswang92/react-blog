@@ -3,7 +3,9 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import 'antd/dist/antd.css';
 
 class Content extends React.Component {
-    
+  constructor(props) {
+    super(props);
+  }
 
   render() {
     // const {getFieldDecorator} = this.props.form;
@@ -11,9 +13,8 @@ class Content extends React.Component {
     return (
       <div>
         <h1>Content, total users#:
-           {/* {this.props.users.length} */}
         </h1>
-        {/* {this.props.users.map(u=><div key={++key}>id: {key}, username: {u.username}</div>)} */}
+        {this.props.users.map(u=><div key={++key}>id: {key}, username: {u.username}</div>)}
       </div>
     );
   }
