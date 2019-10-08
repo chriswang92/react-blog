@@ -6,7 +6,9 @@ import {registerUser} from '../actions/apis';
 import LoginForm from '../components/LoginForm';
 
 
-const mapStateToProps = null;
+const mapStateToProps = (state,props)=>({
+  isLogin:props.isLogin
+});
 const mapDispatchToProps = dispatch => 
 bindActionCreators({
   registerUser

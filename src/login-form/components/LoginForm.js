@@ -11,10 +11,11 @@ class LoginForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-        this.props.registerUser(values);
+      if (err) {
+        console.log('handleSubmit has err: ',err);
       }
+      console.log('handleSubmit success, Received values of form: ', values);
+      this.props.registerUser(values);
     });
   };
 
@@ -34,7 +35,7 @@ class LoginForm extends React.Component {
 
   render() {
     const {getFieldDecorator} = this.props.form;
-
+    console.log('rendering loginform, isLogin=',this.props.isLogin);
     return (
       <div>
       <Form className="login-form" onSubmit={this.handleSubmit}>
@@ -78,14 +79,13 @@ class LoginForm extends React.Component {
           )}
           <a className="login-form-forgot" href="">Forgot password</a>
           <Button type="primary" htmlType="submit" className="login-form-button" >
-            Register
+            {this.props.isLogin? 'Login321':'Register123'}
           </Button>
           Or <a href="">Login now!</a>
         </FormItem>
       </Form>
       <hr />
         <Button onClick={()=>this.props.history.push('/home')}>back to Home </Button>
-        <ContentCtn />
         </div>
     );
   }

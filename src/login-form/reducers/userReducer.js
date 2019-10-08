@@ -1,22 +1,26 @@
-import {REGISTER_USER} from '../actions/apis';
+import {REGISTER_USER, LOGIN_USER} from '../actions/apis';
 import {USER_STATE} from '../../config/constants';
 import Immutable from 'immutable';
 
-export default function userReducer(rootState=Immutable.Map({}), action) {
-    const state = rootState.get(USER_STATE);
+export default function userReducer(state=[], action) {
+    // const state = rootState.get([USER_STATE]);
     switch(action.type) {
         case REGISTER_USER:
-            const immuData = Immutable.fromJS([
-                ...state,
+            console.log('in userReducer->registerUser, state=',state);
+            const immuData = 
+            [ ...state,
                 {
                     id: action.payload.id,
-                    username: action.payload.username,
-                    password: action.payload.password
+                    username: action.payload.userInfo.username,
+                    password: action.payload.userInfo.password
                 }
-            ]);
-            return rootState.withMutations(mutableState => 
-                mutableState.updateIn([USER_STATE],immuData));
+            ];
+            // return state.withMutations(mutableState => 
+            //     mutableState.set(immuData));
+            return immuData;
+        case LOGIN_USER:
+
         default:
-            return rootState;
+            return state;
     }
 }

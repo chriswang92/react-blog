@@ -7,7 +7,7 @@ class MainLayout extends React.Component {
   render() {
     return(
       <div>
-        <LoginFormCtn />
+        <LoginFormCtn isLogin={true}/>
         <ContentCtn />
       </div>
     );

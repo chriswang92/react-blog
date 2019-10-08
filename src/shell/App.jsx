@@ -4,9 +4,7 @@ import Immutable from 'immutable';
 import {USER_STATE} from '../config/constants';
 import RootRouter from './RootRouter';
 
-const initialState = Immutable.Map({
-  users: [{id:0, username: 'chriswang', password: 'abc123'}]
-});
+const initialState = {users:[{id:0, username: 'chriswang', password: 'abc123'}]};
 
 
 const persistedState = { [USER_STATE]: initialState };
@@ -14,7 +12,7 @@ const persistedState = { [USER_STATE]: initialState };
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.store = configureStore(/*undefined,*/ persistedState);
+    this.store = configureStore(initialState);
   }
 
   componentDidMount() {
