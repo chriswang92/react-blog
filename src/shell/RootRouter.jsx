@@ -10,7 +10,8 @@ function RootRouter({store}) {
   const LoginLayout = routerConfig['/login'].component;
   const BasicLayout = routerConfig['/home'].component;
   const RegisterPage = routerConfig['/register'].component;
-
+  const GamePage = routerConfig['/game'].component;
+  
   return (
     <Provider store={store}>
       <ConfigProvider locale={enUS}>
@@ -18,6 +19,7 @@ function RootRouter({store}) {
           <Switch>
             <Route exact path="/login" component={LoginLayout} />
             <Route exact path="/register" component={RegisterPage} />
+            <Route exact path="/game" component={GamePage} />
             <Route exact path={["/home", "/"]} component={BasicLayout} />
             <Route path="*" component={NotFound} />
           </Switch>

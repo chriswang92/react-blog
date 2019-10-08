@@ -8,15 +8,75 @@ import {Link} from 'react-router-dom';
 const Password = Input.Password;
 const FormItem = Form.Item;
 class LoginOrRegisterForm extends React.Component {
-  handleSubmit = e => {
-    e.preventDefault();
+  constructor(props) {
+    super(props); 
+    this.isLogin = this.props.isLogin;
+    console.log('in loginregform constructor, this.props.registeredUse=',this.props.registeredUsers);
+    this.registeredUsers = this.isLogin? this.props.registeredUsers : null;
+    this.loginSuccess = false;
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.setLoginSuccess = this.setLoginSuccess.bind(this);
+  }
+  handleRegister = e => {
+    console.log('in handleSubmit, saw a register submit, doing fields validate..');
     this.props.form.validateFields((err, values) => {
       if (err) {
-        console.log('handleSubmit has err: ',err);
+        console.log('handleRegister has err: ',err);
       }
-      console.log('handleSubmit success, Received values of form: ', values);
+      console.log('handleRegister success, Received values of form: ', values);
       this.props.registerUser(values);
     });
+  }
+  checkUser = (uname, pwd) => { for(var u of this.registeredUsers) {
+      if (u.username === uname && u.password === pwd) {
+        return true;
+      }
+    // var usersToCheckArr = [];
+    // usersToCheckArr.push({username:u.username, password: u.password});
+    // return usersToCheckArr;
+    }
+    return false;
+  }
+  handleLogin = e => {
+    console.log('in handleSubmit, saw a login submit, do handleLogin..|this.registeredUsers=',this.registeredUsers);
+    if (!this.registeredUsers || this.registeredUsers.length === 0) {
+      console.log('No registeredUser exists, users=', this.registeredUsers);
+      return false;
+    }
+    this.props.form.validateFields((err, values) => {
+      if (err) {
+        console.log('handleLogin has err: ',err);
+      }
+      let isUserRegistered = false;
+      console.log('before check, checkuser=',isUserRegistered);
+      isUserRegistered = this.checkUser(values.username, values.password);
+      console.log('after check, checkuser=',isUserRegistered);
+      
+      if (isUserRegistered) {
+        console.log('user exist, login success. username=',values.username,'pwd=',values.password);
+        this.loginSuccess = true;
+        return true;
+      } else {
+        console.log('user does not exist, login failed. username=',values.username,'pwd=',values.password);
+        return false;
+      }
+    });
+  }
+  setLoginSuccess = () => {
+    
+    this.loginSuccess = true;//this.handleLogin(e);
+  }
+  handleSubmit = e => {
+    e.preventDefault();
+    if (this.isLogin) {
+      console.log('before handleLogin, loginSuccess=',this.loginSuccess);
+      // this.loginSuccess = true;//this.handleLogin(e);
+      this.setLoginSuccess();
+      console.log('after handleLogin, loginSuccess=',this.loginSuccess);
+    } 
+    else {
+      this.handleRegister(e);
+    }
   };
 
   handleValidator = (rule, val, callback) => {
@@ -34,9 +94,9 @@ class LoginOrRegisterForm extends React.Component {
   }
 
   render() {
-    const {isLogin} = this.props;
+    const isLogin = this.isLogin;
     const {getFieldDecorator} = this.props.form;
-    console.log('rendering LoginOrRegisterForm, isLogin=',isLogin);
+    console.log('rendering LoginOrRegisterForm, isLogin=',isLogin,'loginSuccess=',this.loginSuccess);
     return (
       <div>
       <Form className="login-form" onSubmit={this.handleSubmit}>
@@ -83,13 +143,20 @@ class LoginOrRegisterForm extends React.Component {
           <a className="login-form-forgot" href="">Forgot password</a>
         </FormItem>
         : null}
+
         
         <FormItem>
           <Button type="primary" htmlType="submit" className="login-form-button" >
             {isLogin? 'Login321':'Register123'}
           </Button>
           Or <Link to={isLogin?'/register':'/login'}>{isLogin?'register':'login'} now!</Link>
+          {this.loginSuccess?
+        <p>
+          Login success!
+        </p>
+        :null}
         </FormItem>
+        
       </Form>
         
       <Button><Link to='/home'>home</Link> </Button>

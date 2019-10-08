@@ -4,7 +4,7 @@ import Immutable from 'immutable';
 import {USER_STATE} from '../config/constants';
 import RootRouter from './RootRouter';
 
-const initialState = {users:[{id:0, username: 'chriswang', password: 'abc123'}]};
+const initialState = {users:[{id:0, username: 'chriswang', password: 'abc12345'}]};
 
 
 const persistedState = { [USER_STATE]: initialState };

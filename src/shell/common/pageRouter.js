@@ -15,6 +15,11 @@ const routerConfig = {
     component: LoadableCpnt({
       loader: () => import('../../login-form/components/MainLayout')
     })
+  },
+  '/game': {
+    component: LoadableCpnt({
+      loader: () => import('../../game-tictactoe/GamePage')
+    })
   }
 }
 export default routerConfig;
