@@ -20,6 +20,7 @@
     "redux-devtools-extension": "2.13.8"
   },
   "scripts": {
+    "start2": "node server.js", 
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
