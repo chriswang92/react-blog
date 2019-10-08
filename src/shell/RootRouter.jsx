@@ -6,12 +6,10 @@ import enUS from 'antd/lib/locale-provider/en_US';
 import routerConfig from './common/pageRouter';
 import NotFound from './routes/Exception/404';
 
-import LoginForm from './../login-form/containers/LoginFormCtn';
-import BasicLayout from './../login-form/containers/BasicLayoutCtn';
-
 function RootRouter({store}) {
   const LoginLayout = routerConfig['/login'].component;
   const BasicLayout = routerConfig['/home'].component;
+  const RegisterPage = routerConfig['/register'].component;
 
   return (
     <Provider store={store}>
@@ -19,6 +17,7 @@ function RootRouter({store}) {
         <BrowserRouter>
           <Switch>
             <Route exact path="/login" component={LoginLayout} />
+            <Route exact path="/register" component={RegisterPage} />
             <Route exact path={["/home", "/"]} component={BasicLayout} />
             <Route path="*" component={NotFound} />
           </Switch>

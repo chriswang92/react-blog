@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button} from 'antd';
-import BlogTable from './BlogTable';
+import {Link} from 'react-router-dom';
+import BlogTableCtn from '../containers/BlogTableCtn';
 
 class BasicLayout extends React.Component {
   render() {
@@ -8,8 +9,9 @@ class BasicLayout extends React.Component {
     return (
       <div>
         <h1>BasicLayout123</h1>
-        <BlogTable />
-        <Button onClick={()=>this.props.history.push('/login')}>login </Button>
+        <BlogTableCtn />
+        <Button><Link to='/login'>login</Link> </Button>
+        <Button><Link to='/register'>register</Link> </Button>
       </div>
     );
   }

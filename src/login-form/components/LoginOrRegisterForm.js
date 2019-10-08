@@ -3,11 +3,11 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import 'antd/dist/antd.css';
 import {Redirect} from 'react-router-dom';
 import ContentCtn from '../containers/ContentCtn';
+import {Link} from 'react-router-dom';
 
 const Password = Input.Password;
 const FormItem = Form.Item;
-class LoginForm extends React.Component {
-    
+class LoginOrRegisterForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -25,17 +25,18 @@ class LoginForm extends React.Component {
     }
     console.log('username = ',val);
     console.log('username = ',val.length);
-    let validateResult = val.length > 8 && val.length < 10;
+    let validateResult = val.length >= 8 ;//&& val.length < 10;
     // console.log('username = ',validateResult);
     if (!validateResult) {
-      callback('Please input validate username, length must be >8 and <10, current length='+val.length);
+      callback('Please input validate username, length must be >=8, current length='+val.length);
     }
     callback();
   }
 
   render() {
+    const {isLogin} = this.props;
     const {getFieldDecorator} = this.props.form;
-    console.log('rendering loginform, isLogin=',this.props.isLogin);
+    console.log('rendering LoginOrRegisterForm, isLogin=',isLogin);
     return (
       <div>
       <Form className="login-form" onSubmit={this.handleSubmit}>
@@ -68,6 +69,8 @@ class LoginForm extends React.Component {
             />,
           )}
         </FormItem>
+
+        {isLogin?
         <FormItem>
           {getFieldDecorator('remember', {
             valuePropName: 'checked',
@@ -78,16 +81,21 @@ class LoginForm extends React.Component {
             </Checkbox>
           )}
           <a className="login-form-forgot" href="">Forgot password</a>
+        </FormItem>
+        : null}
+        
+        <FormItem>
           <Button type="primary" htmlType="submit" className="login-form-button" >
-            {this.props.isLogin? 'Login321':'Register123'}
+            {isLogin? 'Login321':'Register123'}
           </Button>
-          Or <a href="">Login now!</a>
+          Or <Link to={isLogin?'/register':'/login'}>{isLogin?'register':'login'} now!</Link>
         </FormItem>
       </Form>
+        
+      <Button><Link to='/home'>home</Link> </Button>
       <hr />
-        <Button onClick={()=>this.props.history.push('/home')}>back to Home </Button>
         </div>
     );
   }
 }
-export default Form.create({})(LoginForm);
+export default Form.create({})(LoginOrRegisterForm);

@@ -7,7 +7,7 @@ import LoginOrRegisterForm from '../components/LoginOrRegisterForm';
 
 
 const mapStateToProps = (state,props)=>({
-  isLogin:true
+  isLogin:false
 });
 const mapDispatchToProps = dispatch => 
 bindActionCreators({
